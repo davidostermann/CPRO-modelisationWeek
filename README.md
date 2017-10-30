@@ -13,7 +13,7 @@ Docker fonctionne avec les hébergeur VPC (Virtual cloud) et les platform qui su
 
 Docker fonctionne aussi très bien en local grâce à Docker engine. Docker engine s'installe sur Mac, Windows et Linux.
 
-Le grand avantage de docker est que les containers et services Docker peuvent être utilisé en local et déployé sur les serveur qui prennent en charge les containers (AWS, Digital Ocean, Heroku, Zeit Now, Google Cloud, Microsoft Azure)
+Le grand avantage de docker est que les containers et services Docker peuvent être utilisé en local et déployé sur les serveur qui prennent en charge les containers (AWS, Digital Ocean, Heroku, Zeit Now, Google Cloud, Microsoft Azure) et sur les machines de vos collègues.
 
 #### Docker engine
 

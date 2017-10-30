@@ -27,14 +27,28 @@ Un container est une instance docker qui est géré par le docker engine (run, s
 
 Ils existent des centaines de container pré-buildé. On regardera, en particulier, node:alpine et posgres. Il existe aussi des images pour mongodb, mysql, phpmyadmin, ...
 
-Les containers publiés peuvent être basé sur d'autre container. Et c'est super pratique.
+Les containers publiés peuvent être basé sur d'autre container. Et c'est super pratique pour créer ses configurations projet.
 
-Sur le docker hub, vous pouvez publier votre propre container.
+Sur le docker hub, vous pouvez eventuellement publier votre propre container.
 
-### Vos projet en container
+### Un projet en container
 
-Quand vous faites
+REF : https://blog.codeship.com/using-docker-compose-for-nodejs-development/
 
-  * .Dockerfile
-
-#### Vos projet en service
+  * Créer votre projet
+  * Ajouter un .Dockerfile
+  * Build : docker build .
+  * Recuperer l'image de POSTGRES sur le hub : docker pull posgres
+  * Ajouter un docker-compose.yml (cf. blog post)
+  
+  En plus du blog post :
+  
+  * Ajouter un port de sortie pour postgres : - "5432:5432" pour pouvoir utiliser POSTICO (sur mac OSX)
+  * Pour tester psql : docker exec -ti ec6e054ece98 psql -U postgres
+  * Vous pouvez ajouter PhpMyAdmin to the docker-composer (ou Admirer / iso phpMyAdmin : https://hub.docker.com/_/adminer/)
+  * Au final, vous pouvez ajouter de la persistance en ajoutant un volume pour postgres dans votre docker-composer.yml.
+  
+  A SUIVRE : Docker swarm.
+  
+  
+  

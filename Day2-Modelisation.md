@@ -20,9 +20,31 @@ Attention au vocabulaire utilisé. Les mots choisis sont importants. Ils vous pe
 
 ## Definir les attributs des entités
 
-cf. page 83 
+cf. page 83 -> Bien lire l'encadré "Attribut ou concept ?".
 
-## diagrammes de classe : 
+## Définir les associations entre entités
 
-Grâce au diagrammes de classe, nous allons definir des assocciations entre entités. Nous allons aussi définir les attributs des entités.
+cf. page 84
+
+Mutiplicité => écrire les cardinalités
+
+================
+
+## diagrammes de classe participantes :
+
+Dialogues / Contrôles / Entités 
+
+Grâce au diagrammes de classe, nous allons definir des assocciations entre entités et autres classes participantes. 
+
+## diagrammes d'état (de navigation)
+
+cf. page 108 (p. 125 du pdf)
+
+## diagrammes d'activité
+
+Méthode MACAO
+
+## diagrammes d'interaction (séquence)
+
+## Et on peut aller encore plus loin. 
 

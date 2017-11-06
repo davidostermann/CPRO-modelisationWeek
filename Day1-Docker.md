@@ -31,24 +31,70 @@ Les containers publiés peuvent être basé sur d'autre container. Et c'est supe
 
 Sur le docker hub, vous pouvez eventuellement publier votre propre container.
 
-### Un projet en container
+### Une base POSTGRES et un espace d'admin avec docker-compose
 
-REF : https://blog.codeship.com/using-docker-compose-for-nodejs-development/
+1. Créer un dossier 
 
-  * Créer votre projet
-  * Ajouter un .Dockerfile
-  * Build : docker build .
-  * Recuperer l'image de POSTGRES sur le hub : docker pull posgres
-  * Ajouter un docker-compose.yml (cf. blog post)
-  
-  En plus du blog post :
-  
-  * Ajouter un port de sortie pour postgres : - "5432:5432" pour pouvoir utiliser POSTICO (sur mac OSX)
-  * Pour tester psql : docker exec -ti ec6e054ece98 psql -U postgres
-  * Vous pouvez ajouter PhpMyAdmin to the docker-composer (ou Admirer / iso phpMyAdmin : https://hub.docker.com/_/adminer/)
-  * Au final, vous pouvez ajouter de la persistance en ajoutant un volume pour postgres dans votre docker-composer.yml.
-  
-  A SUIVRE : Docker swarm.
+  ``` 
+  mkdir demo-docker-compose 
+  ```
+
+2. Rentrer dans le dossier 
+
+  ```
+  cd demo-docker-compse 
+  ```
+
+3. Créer un fichier docker-compose.yml 
+
+  ```
+  touch docker-compose.yml
+  ```
+
+4. Ecrire le contenu suivant dans le fichier docker-compose.yml :
+
+```  
+
+version: '2'
+services :
+  db:
+    image: postgres:10-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user1
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: tododb
+  admin:
+    image: adminer
+    restart: always
+    depends_on: 
+      - db
+    ports:
+      - 8080:8080
+
+```
+cf. https://gist.github.com/davidostermann/0190da1e1544dfd1625e53ca8a74e258
+
+5. Démarrer docker-compose
+
+```
+docker-compose up
+``` 
+
+6. Accéder à la base de donnée avec adminer : http://localhost:8080
+
+  ```
+    System : PostgreSQL
+    Server : db
+    Username : user1
+    Password : changeme
+    Database : tododb
+  ```
+
+Vous pouvez à présent créer des table et insérer des données dans votre base de donnée.
+
+
   
   
   

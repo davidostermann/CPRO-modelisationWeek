@@ -92,7 +92,28 @@ docker-compose up
     Database : tododb
   ```
 
-Vous pouvez à présent créer des table et insérer des données dans votre base de donnée.
+## Créer la base de donnée de l'application SmartTodos :
+
+Spécification :
+
+- Une todo à un id et un name
+- Une todo peut avoir une catégorie
+- Une categorie peut avoir plusieurs todos
+
+1. Créer une table "todos" avec les colonnes suivantes :
+  - id
+  - name
+  - categoy_id
+  
+2. Créer une table "categories" avec les colonnes suivantes :
+  - id
+  - name
+  
+3. Ajouter une foreign key sur category_id de todos pour lier la table todos
+
+
+  
+
 
 
   

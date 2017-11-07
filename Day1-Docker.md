@@ -111,6 +111,16 @@ Spécification :
   
 3. Ajouter une foreign key sur category_id de todos pour lier la table todos
 
+## Insérer des données
+
+1. Ajouter des catégories
+
+2. Ajouter des todos liées aux catégories
+
+## Selectionner les données
+
+
+
 
   
 

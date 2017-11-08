@@ -8,6 +8,13 @@ CREATE TABLE users(
 ); 
 ```
 
+``` 
+CREATE TABLE users_todos(
+ user_id integer REFERENCES users,
+ todo_id integer REFERENCES todos
+); 
+``` 
+
 # NodeJS 
 
 - POST

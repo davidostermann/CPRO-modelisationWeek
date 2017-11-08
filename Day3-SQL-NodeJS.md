@@ -31,6 +31,10 @@ INSERT INTO users_todos(user_id, todo_id) VALUES (1, 4);
 SELECT * FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
 ``` 
 
+``` 
+SELECT * FROM users_todos INNER JOIN todos ON todos.id = users_todos.todo_id AND users_todos.user_id=1;
+``` 
+
 # NodeJS 
 
 - POST

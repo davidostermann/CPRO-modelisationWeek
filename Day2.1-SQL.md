@@ -63,16 +63,16 @@ ALTER TABLE todos ADD FOREIGN KEY (category_id) REFERENCES categories(id);
 ### Ajouter des catégories
 
 ```
-INSERT INTO categories(id, name) VALUES [DEFAULT, 'Backlogs'];
-INSERT INTO categories(id, name) VALUES [DEFAULT, 'A faire'];
-INSERT INTO categories(id, name) VALUES [DEFAULT, 'En cours'];
-INSERT INTO categories(id, name) VALUES [DEFAULT, 'Fait'];
+INSERT INTO categories(id, name) VALUES (DEFAULT, 'Backlogs');
+INSERT INTO categories(id, name) VALUES (DEFAULT, 'A faire');
+INSERT INTO categories(id, name) VALUES (DEFAULT, 'En cours');
+INSERT INTO categories(id, name) VALUES (DEFAULT, 'Fait');
 ```
 
 ### Ajouter des todos liées aux catégories
 
 ```
-INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Faire une requête SQL', 4]);
+INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Faire une requête SQL', 4);
 INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Faire une appli NodeJS', 4);
 INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Connecter l'appli à la BDD, 3);
 INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Créer des routes d'API', 2);

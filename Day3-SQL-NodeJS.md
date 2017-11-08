@@ -27,6 +27,12 @@ INSERT INTO users_todos(user_id, todo_id) VALUES (1, 2);
 INSERT INTO users_todos(user_id, todo_id) VALUES (1, 4);
 ``` 
 
+## Spec : Trouver toutes les todos qui ont la categorie id=10
+
+SELECT * FROM todos, categories WHERE category_id=10 
+
+SELECT * FROM todos, categories WHERE category_id=10 AND categories.id = 10;
+
 ## Spec : Trouver toutes les todos du user qui a l'id=1
 
 ``` 

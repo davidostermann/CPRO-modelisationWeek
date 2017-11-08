@@ -55,6 +55,15 @@ SELECT todo.id, todo.name, users_todos.todo_id, users_todos.user_id FROM todos, 
 SELECT * FROM users_todos INNER JOIN todos ON todos.id = users_todos.todo_id AND users_todos.user_id=1;
 ``` 
 
+## Spec : Trouver les todos correpondant à la catégorie qui à l'id 10 avec, pour chaque todo, les noms des users associés.
+
+``` 
+SELECT todos.id, todos.name, lastname, firstname FROM todos 
+INNER JOIN users_todos ON todo_id=todos.id 
+INNER JOIN users ON users.id = users_todos.user_id
+WHERE category_id=10;
+``` 
+
 # NodeJS 
 
 - POST

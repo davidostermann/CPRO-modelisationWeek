@@ -27,8 +27,18 @@ INSERT INTO users_todos(user_id, todo_id) VALUES (1, 2);
 INSERT INTO users_todos(user_id, todo_id) VALUES (1, 4);
 ``` 
 
+## Spec : Trouver toutes les todos du user qui a l'id=1
+
 ``` 
 SELECT * FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
+``` 
+
+``` 
+SELECT id, name, todo_id, user_id FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
+``` 
+
+``` 
+SELECT todo.id, todo.name, users_todos.todo_id, users_todos.user_id FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
 ``` 
 
 ``` 

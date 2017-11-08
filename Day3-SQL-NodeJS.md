@@ -27,6 +27,10 @@ INSERT INTO users_todos(user_id, todo_id) VALUES (1, 2);
 INSERT INTO users_todos(user_id, todo_id) VALUES (1, 4);
 ``` 
 
+``` 
+SELECT * FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
+``` 
+
 # NodeJS 
 
 - POST

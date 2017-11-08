@@ -1,6 +1,12 @@
 # SQL Many to many relationship
 
-
+```
+CREATE TABLE users(
+ id SERIAL PRIMARY KEY,
+ lastname varchar(255),
+ firstname varchar(255)
+); 
+```
 
 # NodeJS 
 

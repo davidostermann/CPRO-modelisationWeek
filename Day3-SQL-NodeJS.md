@@ -9,10 +9,12 @@ CREATE TABLE users(
 ```
 
 ``` 
+DROP TABLE users_todos;
 CREATE TABLE users_todos(
- user_id integer REFERENCES users,
- todo_id integer REFERENCES todos
-); 
+ user_id integer REFERENCES users ON DELETE CASCADE,
+ todo_id integer REFERENCES todos ON DELETE CASCADE,
+ PRIMARY KEY (user_id, todo_id)
+);
 ``` 
 
 # NodeJS 

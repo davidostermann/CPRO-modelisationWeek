@@ -2,8 +2,11 @@
 
 
 
+# NodeJS 
 
-
+- POST
+- PUT
+- DELETE
 
 # Docker web container in services (docker-compose)
 

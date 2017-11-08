@@ -34,8 +34,8 @@ ex. http://localhost:8080/?pgsql=db&username=user1&db=tododb&ns=public&sql=
 
   ```
   CREATE TABLE todos(
-    id SERIAL PRIMARY KEY
-    name VARCHAR(255)
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
     category_id INTEGER
   );
   ```
@@ -47,7 +47,7 @@ ex. http://localhost:8080/?pgsql=db&username=user1&db=tododb&ns=public&sql=
 
   ```
   CREATE TABLE categories(
-    id SERIAL PRIMARY KEY
+    id SERIAL PRIMARY KEY,
     name VARCHAR(255)
   );
   ```

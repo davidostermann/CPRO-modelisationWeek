@@ -1,4 +1,4 @@
-# Day 2 : Modelisation
+# Day 4 : Modelisation
 
 Cf. Bouquin UML 2 page 98 du pdf. p. 81 du livre
 

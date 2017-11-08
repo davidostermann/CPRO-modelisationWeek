@@ -16,6 +16,11 @@ CREATE TABLE users_todos(
  PRIMARY KEY (user_id, todo_id)
 );
 ``` 
+INSERT INTO users(id, firstname, lastname) VALUES (DEFAULT, 'David', 'Ostermann');
+
+INSERT INTO users_todos(user_id, todo_id) VALUES (1, 3);
+INSERT INTO users_todos(user_id, todo_id) VALUES (1, 2);
+INSERT INTO users_todos(user_id, todo_id) VALUES (1, 4);
 
 # NodeJS 
 

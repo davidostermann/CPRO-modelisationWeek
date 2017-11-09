@@ -29,40 +29,57 @@ INSERT INTO users_todos(user_id, todo_id) VALUES (1, 4);
 
 ## Spec : Trouver toutes les todos qui ont la categorie id=10 (one to many)
 
+```SQL
 SELECT * FROM todos WHERE category_id=10 
+```
 
+```SQL
 SELECT * FROM todos, categories WHERE category_id=10 AND categories.id = 10;
+```
 
+```SQL
 SELECT * FROM todos INNER JOIN categories ON categories.id=10 WHERE category_id=10;
+```
 
+```SQL
 SELECT * FROM todos INNER JOIN categories ON categories.id=todos.category_id WHERE category_id=10;
+``` 
 
 ## Spec : Trouver toutes les todos du user qui a l'id=1 (many to may)
 
-``` 
+```SQL 
 SELECT * FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
 ``` 
 
-``` 
+```SQL 
 SELECT id, name, todo_id, user_id FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
 ``` 
 
-``` 
+```SQL 
 SELECT todo.id, todo.name, users_todos.todo_id, users_todos.user_id FROM todos, users_todos WHERE id = todo_id AND user_id = 1;
 ``` 
 
-``` 
+```SQL 
 SELECT * FROM users_todos INNER JOIN todos ON todos.id = users_todos.todo_id AND users_todos.user_id=1;
 ``` 
 
 ## Spec : Trouver les todos correpondant à la catégorie qui à l'id 10 avec, pour chaque todo, les noms des users associés.
 
-``` 
+```SQL
 SELECT todos.id, todos.name, lastname, firstname FROM todos 
 INNER JOIN users_todos ON todo_id=todos.id 
 INNER JOIN users ON users.id = users_todos.user_id
 WHERE category_id=10;
 ``` 
+
+## Spec : Donne-moi tous les users correspondant à la catégories 4
+
+```SQL
+SELECT lastname, firstname, users.id, todos.id AS todo_id, todos.name AS todo_name FROM users 
+INNER JOIN users_todos ON users.id = users_todos.user_id
+INNER JOIN todos ON todos.id = users_todos.todo_id
+WHERE todos.category_id = 4;
+```
 
 # NodeJS 
 
@@ -78,6 +95,82 @@ app.post('/todo', (req, res) => {
   })
 })
 ``` 
+
+## GET /user/[ID]/todos
+
+Donne-moi les todos correspondant à un user qui à l'id passé en params [ID] (cf. express doc.)
+
+```javascript
+app.get('/user/:id/todos', (req, res) => {
+  const { id } = req.params;
+  client.query(`SELECT * FROM todos, users_todos WHERE id = todo_id AND user_id = ${id}`).then((data) => {
+    res.send(data.rows)
+  }).catch(err => {
+    console.log('err : ', err);
+    res.json(err)
+  })
+})
+```
+
+
+## GET /category/[ID]/todos
+
+Donne-moi les todos liées à la catégories avec l'id passé en params [ID]
+
+```javascript
+app.get('/category/:id/todos', (req, res) => {
+  const { id } = req.params;
+  client.query(`SELECT * FROM todos WHERE category_id=${id}`).then((data) => {
+    res.send(data.rows)
+  }).catch(err => {
+    console.log('err : ', err);
+    res.json(err)
+  })
+})
+```
+
+## GET /category/[ID]/todos/full (avec les users associés)
+
+Donne-moi les todos liées à la catégories avec l'id passé en params [ID] avec pour chaque catégorie les users associés à celle-ci.
+
+
+```javascript
+const tranformRowResult = (acc, nextItem) => {
+
+  if (acc[nextItem.todo_id]) {
+    acc[nextItem.todo_id].users[nextItem.user_id] = nextItem.user_name
+  } else {
+    acc[nextItem.todo_id] = {
+      id: nextItem.todo_id,
+      name: nextItem.todo_name,
+      users: { [nextItem.user_id]: nextItem.user_name }
+    }
+  }
+  return acc
+
+}
+
+app.get('/category/:id/todos/full', (req, res) => {
+  const { id } = req.params;
+  client.query(`SELECT todos.id as todo_id, 
+  todos.name as todo_name, users.id as user_id, 
+  CONCAT(lastname,' ',firstname) as user_name FROM todos 
+INNER JOIN users_todos ON todo_id=todos.id 
+INNER JOIN users ON users.id = users_todos.user_id
+WHERE category_id=${id};`).then((data) => {
+    
+    res.send(data.rows.reduce(tranformRowResult, {}))
+    //res.send(data.rows)
+  }).catch(err => {
+    console.log('err : ', err);
+    res.json(err)
+  })
+})
+``` 
+
+## GET /category/[ID]/users
+
+Donne-moi les users associés à la catégories qui l'id passé en params [ID]
 
 ## PUT
 ## DELETE

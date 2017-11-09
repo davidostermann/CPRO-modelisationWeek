@@ -74,7 +74,7 @@ INSERT INTO categories(id, name) VALUES (DEFAULT, 'Fait');
 ```
 INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Faire une requête SQL', 4);
 INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Faire une appli NodeJS', 4);
-INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Connecter l'appli à la BDD, 3);
+INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Connecter l''appli à la BDD', 3);
 INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Créer des routes d'API', 2);
 INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, 'Créer la web pour interroger l''API', 2);
 ```

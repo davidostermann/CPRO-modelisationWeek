@@ -66,9 +66,25 @@ WHERE category_id=10;
 
 # NodeJS 
 
-- POST
-- PUT
-- DELETE
+## POST
+
+``` 
+app.post('/todo', (req, res) => {
+ const { name, categoryId } = req.body; // es6 destructuring
+  client.query('INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, $1, $2);', [name, categoryId]).then((data) => {
+    res.json(data)
+  }).catch(err => {
+    res.send(JSON.stringify(err))
+  })
+})
+``` 
+
+## PUT
+## DELETE
+
+## GET 
+
+1. 
 
 # Docker web container in services (docker-compose)
 

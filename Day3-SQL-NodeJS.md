@@ -173,7 +173,30 @@ WHERE category_id=${id};`).then((data) => {
 Donne-moi les users associés à la catégories qui l'id passé en params [ID]
 
 ## PUT
+
+En SQL
+
+```SQL
+UPDATE users SET firstname = 'Faustino' WHERE id=2;
+```
+
+```javascript
+app.put('/user/:id', (req, res) => {
+  const { id } = req.params;
+  const { firstname, lastname } = req.body; // es6 destructuring
+  client.query(`UPDATE users 
+    SET firstname = '${firstname}', lastname = '${lastname}'
+   WHERE id=${id};`).then((data) => {
+    res.json(data)
+  }).catch(err => {
+    res.json(err)
+  })
+})
+```
+
 ## DELETE
+
+
 
 ## GET 
 

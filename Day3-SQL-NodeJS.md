@@ -174,12 +174,12 @@ Donne-moi les users associés à la catégories qui l'id passé en params [ID]
 
 ## PUT
 
-En SQL
-
+### EN SQL :
 ```SQL
 UPDATE users SET firstname = 'Faustino' WHERE id=2;
 ```
 
+### EN JS :
 ```javascript
 app.put('/user/:id', (req, res) => {
   const { id } = req.params;
@@ -196,7 +196,22 @@ app.put('/user/:id', (req, res) => {
 
 ## DELETE
 
+### EN SQL :
+```SQL
+DELETE FROM users WHERE id=2;
+```
 
+### EN JS :
+```javascript
+app.delete('/user/:id', (req, res) => {
+  const { id } = req.params;
+  client.query(`DELETE FROM users WHERE id=${id};`).then((data) => {
+      res.json(data)
+    }).catch(err => {
+      res.json(err)
+    })
+})
+```
 
 ## GET 
 

@@ -1,7 +1,7 @@
-DROP TABLE users_todos;
-DROP TABLE users;
-DROP TABLE todos;
-DROP TABLE categories;
+DROP TABLE IF EXISTS users_todos ;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS todos;
+DROP TABLE IF EXISTS categories;
 CREATE TABLE categories(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255)

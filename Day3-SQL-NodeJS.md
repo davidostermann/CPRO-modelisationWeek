@@ -89,11 +89,11 @@ Pour pouvoir parser ce qui arrive dans le body de la requête, il faut ajouter b
 
 Nous allons donc rajouter le middleware (body-parser) comme ceci :
 
-```
+```javascript
 app.use(express.json());
 ```
 
-``` 
+```javascript 
 app.post('/todo', (req, res) => {
  const { name, categoryId } = req.body; // es6 destructuring
   client.query('INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, $1, $2);', [name, categoryId]).then((data) => {
@@ -221,9 +221,31 @@ app.delete('/user/:id', (req, res) => {
 })
 ```
 
-## GET 
+## Accéder à notre API
 
-1. 
+Pour accéder à notre API de n'importe quel IP ou PORT, nous allons utiliser CORS
+
+### installer cors
+
+```bash
+npm i -S cors
+```
+
+### Ajouter le middleware cors
+
+```javascript
+app.use( cors())
+```
+
+### doc de cors
+
+https://github.com/expressjs/cors
+
+Autrement simplement ajouter un header à toutes vos responses :
+
+```javascript
+res.header("Access-Control-Allow-Origin", "*");
+```
 
 # Docker web container in services (docker-compose)
 

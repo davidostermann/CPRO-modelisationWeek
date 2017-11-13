@@ -96,7 +96,7 @@ app.use(express.json());
 ```javascript 
 app.post('/todo', (req, res) => {
  const { name, categoryId } = req.body; // es6 destructuring
-  client.query('INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, $1, $2);', [name, categoryId]).then((data) => {
+  db.query('INSERT INTO todos(id, name, category_id) VALUES (DEFAULT, $1, $2);', [name, categoryId]).then((data) => {
     res.json(data)
   }).catch(err => {
     res.send(JSON.stringify(err))
@@ -111,7 +111,7 @@ Donne-moi les todos correspondant à un user qui à l'id passé en params [ID] (
 ```javascript
 app.get('/user/:id/todos', (req, res) => {
   const { id } = req.params;
-  client.query(`SELECT * FROM todos, users_todos WHERE id = todo_id AND user_id = ${id}`).then((data) => {
+  db.query(`SELECT * FROM todos, users_todos WHERE id = todo_id AND user_id = ${id}`).then((data) => {
     res.send(data.rows)
   }).catch(err => {
     console.log('err : ', err);
@@ -128,7 +128,7 @@ Donne-moi les todos liées à la catégories avec l'id passé en params [ID]
 ```javascript
 app.get('/category/:id/todos', (req, res) => {
   const { id } = req.params;
-  client.query(`SELECT * FROM todos WHERE category_id=${id}`).then((data) => {
+  db.query(`SELECT * FROM todos WHERE category_id=${id}`).then((data) => {
     res.send(data.rows)
   }).catch(err => {
     console.log('err : ', err);
@@ -160,7 +160,7 @@ const tranformRowResult = (acc, nextItem) => {
 
 app.get('/category/:id/todos/full', (req, res) => {
   const { id } = req.params;
-  client.query(`SELECT todos.id as todo_id, 
+  db.query(`SELECT todos.id as todo_id, 
   todos.name as todo_name, users.id as user_id, 
   CONCAT(lastname,' ',firstname) as user_name FROM todos 
 INNER JOIN users_todos ON todo_id=todos.id 
@@ -192,7 +192,7 @@ UPDATE users SET firstname = 'Faustino' WHERE id=2;
 app.put('/user/:id', (req, res) => {
   const { id } = req.params;
   const { firstname, lastname } = req.body; // es6 destructuring
-  client.query(`UPDATE users 
+  db.query(`UPDATE users 
     SET firstname = '${firstname}', lastname = '${lastname}'
    WHERE id=${id};`).then((data) => {
     res.json(data)
@@ -213,7 +213,7 @@ DELETE FROM users WHERE id=2;
 ```javascript
 app.delete('/user/:id', (req, res) => {
   const { id } = req.params;
-  client.query(`DELETE FROM users WHERE id=${id};`).then((data) => {
+  db.query(`DELETE FROM users WHERE id=${id};`).then((data) => {
       res.json(data)
     }).catch(err => {
       res.json(err)

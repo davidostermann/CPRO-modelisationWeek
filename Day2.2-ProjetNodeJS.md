@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 ```
 const { Client } = require('pg')
 const db = new Client({
-  connectionString: '://user1:simplon@localhost:5432/tododb'
+  connectionString: 'postgres://user1:changeme@localhost:5432/tododb'
 })
 db.connect().then( () => {
   console.log('Successfully connected')
@@ -60,9 +60,8 @@ db.connect().then( () => {
 
 ```
 app.get('/todos', (req, res) => {
-  client.query('SELECT * from todos').then( (data) => {
+  db.query('SELECT * from todos').then( (data) => {
     res.send(data.rows)
-    return client.end()
   }).catch( err => {
     res.send(JSON.stringify(err))
   })

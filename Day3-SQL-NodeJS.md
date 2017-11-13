@@ -85,6 +85,14 @@ WHERE todos.category_id = 4;
 
 ## POST
 
+Pour pouvoir parser ce qui arrive dans le body de la requête, il faut ajouter body-parser. Body-parser fait, à présent parti de express. Nous souhaitons utiliser JSON comme format d'échange.
+
+Nous allons donc rajouter le middleware (body-parser) comme ceci :
+
+```
+app.use(express.json());
+```
+
 ``` 
 app.post('/todo', (req, res) => {
  const { name, categoryId } = req.body; // es6 destructuring
